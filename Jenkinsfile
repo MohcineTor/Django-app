@@ -1,40 +1,39 @@
 pipeline {
-
     agent any
-
     tools {
         maven 'maven-3.6'
     }
-    
-    def branch = env.BITBUCKET_BRANCH
+   // environment {
+     //   DOCKER_HUB_CREDENTIALS = credentials('docker-hub-repo')
+     //   DOCKER_IMAGE_NAME = "dockermohcine/my-repo:jma-2.1"
+   // }
     stages {
-  
-        stage("test-branch") {
-           steps {
-              echo "$branch"
-           }
+        stage("Test branch") {
+            steps {
+                sh "echo 'Branch: ${env.BITBUCKET_BRANCH}'"
+            }
         }
         stage("Build jar") {
             steps {
-                echo "building the application ....."
-                //sh 'mvn package'
+                echo "Building the application..."
+               // sh 'mvn package'
             }
         }
         stage("Build image") {
             steps {
-                echo "building the docker image"
-                //withCredentials([usernamePassword(credentialsId:'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                //sh 'docker build -t dockermohcine/my-repo:jma-2.1 .'
-                //sh "echo $PASS | docker login -u $USER --password-stdin"
-                //sh 'docker push dockermohcine/my-repo:jma-2.1'
-
-                }
+                echo "Building the Docker image..."
+               // sh 'docker build -t ${DOCKER_IMAGE_NAME} .'
+               // withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                 //   sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
+                  //  sh "docker push ${DOCKER_IMAGE_NAME}"
+               // }
             }
         }
-        stage("Deploy App") {
+        stage("Deploy app") {
             steps {
-                echo "Deploying the application ....."
+                echo "Deploying the application..."
+                // Add deployment steps here
             }
         }
- }
-
+    }
+}
