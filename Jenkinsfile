@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage("Test branch") {
             steps {
-                sh "echo 'Branch: ${env.BITBUCKET_BRANCH}'"
+                sh "echo 'Branch: ${GITHUB_REF#refs/heads/}'"
             }
         }
         stage("Build jar") {
