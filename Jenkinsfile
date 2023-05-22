@@ -3,6 +3,7 @@ pipeline {
     tools {
         maven 'maven-3.6'
     }
+    //tets
    // environment {
      //   DOCKER_HUB_CREDENTIALS = credentials('docker-hub-repo')
      //   DOCKER_IMAGE_NAME = "dockermohcine/my-repo:jma-2.1"
