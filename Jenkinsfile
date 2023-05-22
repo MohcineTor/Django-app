@@ -9,7 +9,7 @@ pipeline {
     def branch = env.BITBUCKET_BRANCH
     stages {
   
-        stage("test-branch"){
+        stage("test-branch") {
            steps {
               echo "$branch"
            }
@@ -36,6 +36,5 @@ pipeline {
                 echo "Deploying the application ....."
             }
         }
-    }
-}
+ }
 
