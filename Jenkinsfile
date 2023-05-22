@@ -10,7 +10,11 @@ pipeline {
     stages {
         stage("Test branch") {
             steps {
-                sh "echo 'Branch: ${GITHUB_REF#refs/heads/}'"
+                //sh "echo 'Branch: ${GITHUB_REF#refs/heads/}'"
+                script {
+                    def branchName = env.GITHUB_REF.substring("refs/heads/".length())
+                    echo "Branch name: ${branchName}"
+                }
             }
         }
         stage("Build jar") {
