@@ -27,6 +27,12 @@ pipeline {
                 }
             }
         }
+        stage("show branch"){
+            steps {
+               echo "Branch v7: ${env.BRANCH_NAME}"
+               echo "Branch name v7: ${env.GIT_BRANCH}"
+            }
+        }
         stage("Build jar") {
             steps {
                 echo "Building the application..."
