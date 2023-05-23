@@ -29,8 +29,9 @@ pipeline {
         }
         stage("show branch"){
             steps {
-               echo "Branch v7: ${env.BRANCH_NAME}"
-               echo "Branch name v7: ${env.GIT_BRANCH}"
+               def branchv1 = ${env.GIT_BRANCH}
+               branchName = branchv1.substring("refs/heads/".length())
+               echo "Branch name v7:${branchName}"
             }
         }
         stage("Build jar") {
