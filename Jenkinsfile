@@ -23,7 +23,7 @@ pipeline {
         stage("Build jar") {
             steps {
                 echo "Building the application..."
-               // sh 'mvn package'
+               
             }
         }
         stage("Build image") {
