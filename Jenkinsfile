@@ -1,4 +1,4 @@
-def branchv1
+def branchName1
 pipeline {
     agent any
    // tools {
@@ -14,7 +14,7 @@ pipeline {
         stage("show branch"){
             steps {
                 script {
-                    branchv1 = env.GIT_BRANCH
+                    def branchv1 = env.GIT_BRANCH
                     branchName1 = branchv1.substring("origin/".length())
                     echo "Branch name v7:${branchName1}"
                 }
