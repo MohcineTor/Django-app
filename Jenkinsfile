@@ -22,13 +22,13 @@ pipeline {
         }
         stage("Build jar") {
             steps {
-                echo "Building the application hjjhghjg .."
+                echo "Building the application  .."
                
             }
         }
         stage("Build image") {
             steps {
-                echo "Building the Docker image... jhkjhjkh"
+                echo "Building the Docker image... "
                
             }
         }
