@@ -1,39 +1,45 @@
-//groovy pipeline
-def gv
-//jest testing
+def gv 
+
 pipeline {
     agent any
+    tools {
+        maven 'maven:3.6'
+    } 
     stages {
-        stage("init") {
+        stage("Init") {
             steps {
                 script {
                     gv = load "script.groovy"
                 }
             }
         }
-        stage("build jar") {
+        stage("Build") {
             steps {
                 script {
-                    echo "building jar"
-                    //gv.buildJar()
+                    gv.BuildJar()
                 }
             }
         }
-        stage("build image") {
+        stage("Test") {
             steps {
                 script {
-                    echo "building image"
-                    //gv.buildImage()
+                    gv.TestApp()
                 }
             }
         }
-        stage("deploy") {
+        stage("Build Image") {
             steps {
                 script {
-                    echo "deploying"
-                    //gv.deployApp()
+                    gv.BuildImage()
                 }
             }
         }
-    }   
+        stage("Deploy") {
+            steps {
+                script {
+                    gv.DeployApp()
+                }
+            }
+        }
+    }
 }
