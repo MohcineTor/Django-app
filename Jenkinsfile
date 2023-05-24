@@ -1,43 +1,12 @@
-def gv 
-
 pipeline {
     agent any
-    tools {
-        maven 'maven:3.6'
-    } 
     stages {
-        stage("Init") {
+       stage("show branch"){
             steps {
                 script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
-        stage("Build") {
-            steps {
-                script {
-                    gv.BuildJar()
-                }
-            }
-        }
-        stage("Test") {
-            steps {
-                script {
-                    gv.TestApp()
-                }
-            }
-        }
-        stage("Build Image") {
-            steps {
-                script {
-                    gv.BuildImage()
-                }
-            }
-        }
-        stage("Deploy") {
-            steps {
-                script {
-                    gv.DeployApp()
+                    def branchv1 = env.GIT_BRANCH
+                    branchName1 = branchv1.substring("origin/".length())
+                    echo "Branch name v7:${branchName1}"
                 }
             }
         }
