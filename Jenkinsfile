@@ -28,11 +28,7 @@ pipeline {
         stage("Build image") {
             steps {
                 echo "Building the Docker image..."
-               // sh 'docker build -t ${DOCKER_IMAGE_NAME} .'
-               // withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                 //   sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
-                  //  sh "docker push ${DOCKER_IMAGE_NAME}"
-               // }
+               
             }
         }
         stage("Deploy app") {
