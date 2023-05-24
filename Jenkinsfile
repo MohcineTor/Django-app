@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.6'
-    }
+   // tools {
+       // maven 'maven-3.6'
+  //  }
     
    // environment {
      //   DOCKER_HUB_CREDENTIALS = credentials('docker-hub-repo')
