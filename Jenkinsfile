@@ -10,24 +10,6 @@ pipeline {
    // }
     //testing
     stages {
-        stage("Test branch") {
-            steps {
-                //sh "echo 'Branch: ${GITHUB_REF#refs/heads/}'"
-               script {
-                    def branchName = env.GITHUB_REF
-                    println "GITHUB_REF: ${branchName}"
-                   if (branchName == null) {
-                        branchName = env.GITHUB_HEAD_REF
-                    }
-                    if (branchName != null && branchName.startsWith("refs/heads/")) {
-                        branchName = branchName.substring("refs/heads/".length())
-                        echo "Branch name: ${branchName}"
-                    } else {
-                        echo "Unable to determine branch name"
-                    }
-                }
-            }
-        }
         stage("show branch"){
             steps {
                 script {
