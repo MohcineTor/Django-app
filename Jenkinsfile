@@ -6,10 +6,7 @@ pipeline {
    // environment {
      //   DOCKER_HUB_CREDENTIALS = credentials('docker-hub-repo')
      //   DOCKER_IMAGE_NAME = "dockermohcine/my-repo:jma-2.1"
-   // }
-    //vm
-    //lkjkljj
-    
+   // }  
     stages {
         stage("show branch"){
             steps {
