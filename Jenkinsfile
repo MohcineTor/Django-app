@@ -1,6 +1,6 @@
 //groovy pipeline
 def gv
-//jest testdddddddhh
+//jest testing
 pipeline {
     agent any
     stages {
