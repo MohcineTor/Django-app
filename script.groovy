@@ -11,7 +11,7 @@ def buildImage() {
         sh 'docker push nanajanashia/demo-app:jma-2.0'
     }
 } 
-
+//jkjgkjhkj
 def deployApp() {
     echo 'deploying the application...'
 } 
