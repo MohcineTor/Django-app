@@ -2,11 +2,6 @@ def branchName1
 pipeline {
     agent any
   
-    
-   // environment {
-     //   DOCKER_HUB_CREDENTIALS = credentials('docker-hub-repo')
-     //   DOCKER_IMAGE_NAME = "dockermohcine/my-repo:jma-2.1"
-   // }  
     stages {
         stage("show branch"){
             steps {
