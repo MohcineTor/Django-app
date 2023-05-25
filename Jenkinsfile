@@ -3,7 +3,7 @@ def gv
 pipeline {
     agent any
     tools {
-        maven 'maven-3.6'
+        maven 'maven:3.6'
     } 
     stages {
         stage("Init") {
@@ -16,28 +16,28 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    gv.BuildJar()
+                    gv.buildJar()
                 }
             }
         }
         stage("Test") {
             steps {
                 script {
-                    gv.TestApp()
+                    gv.testApp()
                 }
             }
         }
         stage("Build Image") {
             steps {
                 script {
-                    gv.BuildImage()
+                    gv.buildImage()
                 }
             }
         }
         stage("Deploy") {
             steps {
                 script {
-                    gv.DeployApp()
+                    gv.deployApp()
                 }
             }
         }
