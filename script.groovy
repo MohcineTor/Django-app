@@ -1,6 +1,7 @@
+
 def buildJar() {
     echo "Building the Jar of Application....."
-    sh 'mvn package'
+    sh 'mvn clean package'
 }
 
 def testApp() {
@@ -8,12 +9,12 @@ def testApp() {
     sh 'mvn test'
 }
 
-def buildImage() {
+def buildImage(IMAGE_NAME) {
     echo "Building the Image docker for our Application and push this in dockerHub repo ..."
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        sh 'docker build -t dockermohcine/my-repo:jma-3.0 .'
+        sh "docker build -t dockermohcine/my-repo:${IMAGE_NAME} ."
         sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
-        sh 'docker push dockermohcine/my-repo:jma-3.0'
+        sh "docker push dockermohcine/my-repo:${IMAGE_NAME}"
     }
 }
 def deployApp() {
