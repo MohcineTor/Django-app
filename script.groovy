@@ -27,9 +27,9 @@ def buildImage(IMAGE_NAME) {
         sh "docker push dockermohcine/my-repo:${IMAGE_NAME}"
     }
 }
-def deployApp() {
+def deployApp(IMAGE_NAME) {
     echo "Deploying application...."
-    sh 'docker run -d -p 8080:8080 dockermohcine/my-repo:jma-3.0'
+    sh "docker run -d -p 8080:8080 dockermohcine/my-repo:${IMAGE_NAME}"
 }
 
 return this 
