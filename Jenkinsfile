@@ -44,7 +44,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 script {
-                    gv.deployApp()
+                    gv.deployApp("${IMAGE_NAME}")
                 }
             }
         }
