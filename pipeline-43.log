@@ -1,0 +1,309 @@
+Started by user mohcine
+Obtained Jenkinsfile from git https://github.com/MohcineTor/Java-Maven-App.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/my-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential githib-credentials
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/my-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/MohcineTor/Java-Maven-App.git # timeout=10
+Fetching upstream changes from https://github.com/MohcineTor/Java-Maven-App.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.40.1'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+You're using 'Known hosts file' strategy to verify ssh host keys, but your known_hosts file does not exist, please go to 'Manage Jenkins' -> 'Configure Global Security' -> 'Git Host Key Verification Configuration' and configure host key verification.
+ > git fetch --tags --force --progress -- https://github.com/MohcineTor/Java-Maven-App.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 46d9c2d4280c6e751a5b0d07811a2762d6cda571 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 46d9c2d4280c6e751a5b0d07811a2762d6cda571 # timeout=10
+Commit message: "Update script.groovy"
+ > git rev-list --no-walk dab91cff32033cb5cfa569983a7850ec1642ff86 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Init)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] load
+[Pipeline] { (script.groovy)
+[Pipeline] }
+[Pipeline] // load
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (increment version)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+incrementing version app version ....
+[Pipeline] sh
++ mvn build-helper:parse-version versions:set '-DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}' versions:commit
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- build-helper-maven-plugin:3.4.0:parse-version (default-cli) @ java-maven-app ---
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- versions-maven-plugin:2.15.0:set (default-cli) @ java-maven-app ---
+[INFO] Searching for local aggregator root...
+[INFO] Local aggregation root: /var/lib/jenkins/workspace/my-pipeline
+[INFO] Processing change of com.example:java-maven-app:1.1.0-SNAPSHOT -> 1.1.1
+[INFO] Processing com.example:java-maven-app
+[INFO]     Updating project com.example:java-maven-app
+[INFO]         from version 1.1.0-SNAPSHOT to 1.1.1
+[INFO] 
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- versions-maven-plugin:2.15.0:commit (default-cli) @ java-maven-app ---
+[INFO] Accepting all changes to /var/lib/jenkins/workspace/my-pipeline/pom.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.102 s
+[INFO] Finished at: 2023-07-24T09:28:42Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] readFile
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Building the Jar of Application.....
+[Pipeline] sh
++ mvn clean package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ java-maven-app ---
+[INFO] Deleting /var/lib/jenkins/workspace/my-pipeline/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ java-maven-app ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:compile (default-compile) @ java-maven-app ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /var/lib/jenkins/workspace/my-pipeline/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ java-maven-app ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/my-pipeline/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:testCompile (default-testCompile) @ java-maven-app ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ java-maven-app ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ java-maven-app ---
+[INFO] Building jar: /var/lib/jenkins/workspace/my-pipeline/target/java-maven-app-1.1.1.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.3.5.RELEASE:repackage (default) @ java-maven-app ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.588 s
+[INFO] Finished at: 2023-07-24T09:29:09Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Testing the Application ...
+[Pipeline] sh
++ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ java-maven-app ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:compile (default-compile) @ java-maven-app ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ java-maven-app ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/my-pipeline/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:testCompile (default-testCompile) @ java-maven-app ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ java-maven-app ---
+[INFO] No tests to run.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.483 s
+[INFO] Finished at: 2023-07-24T09:29:31Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Image)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Building the Image docker for our Application and push this in dockerHub repo ...
+[Pipeline] withCredentials
+Masking supported pattern matches of $PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ docker build -t dockermohcine/my-repo:1.1.1-44 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  17.63MB
+
+Step 1/5 : FROM openjdk:8-jre-alpine
+ ---> f7a292bbb70c
+Step 2/5 : EXPOSE 8080
+ ---> Using cache
+ ---> fc8263872973
+Step 3/5 : COPY ./target/java-maven-app-*.jar /usr/app/
+ ---> 0e5b604b210d
+Step 4/5 : WORKDIR /usr/app
+ ---> Running in 71a7a37f6f16
+Removing intermediate container 71a7a37f6f16
+ ---> 16a3ca7f6c8e
+Step 5/5 : CMD java -jar java-maven-app-*.jar
+ ---> Running in 51f4d8b57c55
+Removing intermediate container 51f4d8b57c55
+ ---> 15cd79f56ba2
+Successfully built 15cd79f56ba2
+Successfully tagged dockermohcine/my-repo:1.1.1-44
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [PASSWORD]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ docker login -u dockermohcine --password-stdin
++ echo ****
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] sh
++ docker push dockermohcine/my-repo:1.1.1-44
+The push refers to repository [docker.io/dockermohcine/my-repo]
+4078354e1a7f: Preparing
+edd61588d126: Preparing
+9b9b7f3d56a0: Preparing
+f1b5933fe4b5: Preparing
+f1b5933fe4b5: Layer already exists
+edd61588d126: Layer already exists
+9b9b7f3d56a0: Layer already exists
+4078354e1a7f: Pushed
+1.1.1-44: digest: sha256:06f144bbe59564297939e04a3eba367a33c03c54b83793e9016699c7e49da945 size: 1159
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Deploying application....
+[Pipeline] sh
++ docker run -d -p 8080:8080 dockermohcine/my-repo:1.1.1-44
+f760a9ac678d765345a552739fbe3e498515e3d187bdb59bb81dfa6d04970f39
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
